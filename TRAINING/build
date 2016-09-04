@@ -1,0 +1,15 @@
+#!/bin/ksh
+#
+#  build script for gcc C++ compiler
+#
+trap  'echo error has occurred......;exit $?'  ERR
+#
+#
+if [[ $1 = "" ]]
+	then read input?"Enter file to build: "
+	set "$input" $2 $3 $4
+	fi
+file=$(print "$1" | cut -d"." -f1)
+#
+gcc -std=c++11 -o $file  $1 $2 $3 $4 -lstdc++ -lboost_system
+print "\n\nresultant executable is:  $file"
